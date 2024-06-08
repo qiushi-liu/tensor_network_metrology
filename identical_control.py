@@ -2,7 +2,7 @@
 
 from functions import *
 
-# return sequential QFI, input state rho and list of control operations, for arbitrary control operations
+# return sequential QFI, input state rho and control operation, for arbitrary control operations
 # rho: initial input state
 # controls: list of Choi operators of initial control operations
 # E0_theta: Choi operator of the channel to estimate
@@ -125,7 +125,7 @@ def sequential_QFI_same_control(rho, control, E0_theta, dE0_theta, N_steps, d, d
         else:
             current_QFI = QFI
         if item%10 == 0:
-            print('iteration: QFI', item, QFI)
+            print('iteration', item, 'QFI', QFI)
         
         rho_out = np.reshape(rho_out, (d, d_a, d, d_a))
         drho_out = np.reshape(drho_out, (d, d_a, d, d_a))
@@ -160,7 +160,6 @@ def sequential_QFI_same_control(rho, control, E0_theta, dE0_theta, N_steps, d, d
         if N_steps == 2:
             circuit_without_this_control_tensor = contract(*circuit_without_this_control)
         else:
-            # need to be relabelled
             circuit_without_this_control_expr = contract_expression(*circuit_without_this_control, constants = [0] + [2*i+1 for i in range(N_steps-1-control_index)] + [2*i for i in range(N_steps-1-control_index, N_steps)] + [2*N_steps-1])
             circuit_without_this_control_tensors = [controls[N_steps-2-i] for i in range(N_steps-1) if N_steps-2-i != control_index]
             circuit_without_this_control_tensor = circuit_without_this_control_expr(*circuit_without_this_control_tensors)
