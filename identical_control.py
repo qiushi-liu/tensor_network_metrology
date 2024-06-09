@@ -2,7 +2,7 @@
 
 from functions import *
 
-# return sequential QFI, input state rho and control operation, for arbitrary control operations
+# return sequential QFI, input state rho and control operation, for identical control operations
 # rho: initial input state
 # controls: list of Choi operators of initial control operations
 # E0_theta: Choi operator of the channel to estimate
