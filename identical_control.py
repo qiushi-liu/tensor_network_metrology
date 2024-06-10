@@ -222,7 +222,6 @@ def sequential_QFI_same_control(rho, control, E0_theta, dE0_theta, N_steps, d, d
             return -np.real(X_first_term + X_second_term)
         
         lambda_0 = 0.5
-        QFI_new = QFI_lambda(lambda_0)
         resbrute = scipy.optimize.minimize_scalar(QFI_lambda, bounds=(-0.001, 0.501), method='bounded')
         if resbrute.fun <= -QFI:
             lambda_new = resbrute.x
