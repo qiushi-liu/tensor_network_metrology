@@ -7,7 +7,7 @@ from functions import *
 # controls: list of Choi operators of initial control operations
 # E0_theta: Choi operator of the channel to estimate
 # dE0_theta: derivative of E_theta
-# N_steps: number of channels to estimate
+# N_steps: number of queries to the channel to estimate
 # d: system dimension 
 # d_a: ancilla dimension
 # iterations: maximal number of iterations
