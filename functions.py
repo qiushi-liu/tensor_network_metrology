@@ -8,43 +8,6 @@ import scipy
 Pauli_X = np.array([[0, 1], [1, 0]])
 Pauli_Y = np.array([[0, -1j], [1j, 0]])
 Pauli_Z = np.array([[1, 0], [0, -1]])
-
-# partial trace over the subsystem at axis for numpy 2d array (assume that the matrix for each subsystem is square)
-# rho: a matrix (numppy 2d array))
-# dims: a list containing the dimension of each subsystem
-# axis: the index of the subsytem to be traced out
-def np_partial_trace(rho, dims, axis):
-    dims_ = np.array(dims)
-    
-    # return full trace of the matrix consisting of single subsystem
-    if dims_.size == 1:
-        return np.trace(rho)
-    
-    # reshape the matrix into a tensor with the following shape:
-    # [dim_0, dim_1, ..., dim_n, dim_0, dim_1, ..., dim_n]
-    # each subsystem gets one index for its row and another one for its column
-    reshaped_rho = np.reshape(rho, np.concatenate((dims_, dims_), axis=None))
-    
-    # if axis is an integer, trace over single subsystem
-    if isinstance(axis, int):
-        traced_out_rho = np.trace(reshaped_rho, axis1=axis, axis2=dims_.size+axis)
-
-        # traced_out_rho is still in the shape of a tensor
-        # reshape back to a matrix
-        dims_untraced = np.delete(dims_, axis)
-        rho_dim = np.prod(dims_untraced)
-        return traced_out_rho.reshape([rho_dim, rho_dim])
-    
-    # if axis is a list, trace over multiple subsystems
-    elif isinstance(axis, list):
-        axis = sorted(axis)
-        dims_untraced = dims_
-        traced_out_rho = reshaped_rho
-        for i in range(len(axis)):
-            traced_out_rho = np.trace(traced_out_rho, axis1=axis[i]-i, axis2=dims_untraced.size+axis[i]-i)
-            dims_untraced = np.delete(dims_untraced, axis[i]-i)
-        rho_dim = np.prod(dims_untraced)
-        return traced_out_rho.reshape([rho_dim, rho_dim])
     
 # the i-th basis vector of n-dim Hilbert space
 def basis_state(n, i):
