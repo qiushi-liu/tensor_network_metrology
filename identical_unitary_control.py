@@ -12,7 +12,7 @@ import pennylane as qml
 # SLD_operator: current operator X
 # d: system dimension 
 # d_a: ancilla dimension
-# N_steps: number of channels to estimate
+# N_steps: number of queries to the channel to estimate
 def grad_QFI_fn(variational_parameters, variational_unitary, E_theta, dE_tensor_network, rho, SLD_operator, d, d_a, N_steps):
     d_tot = d*d_a
     control_unitary = variational_unitary(variational_parameters)
