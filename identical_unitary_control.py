@@ -95,7 +95,7 @@ def grad_QFI_fn(variational_parameters, variational_unitary, E_theta, dE_tensor_
 # rho: initial input state
 # control_parameters: variational parameters for initial control operation, shape: (num_layers, n_qubits, 3)
 # E0_theta: Choi operator of the channel to estimate
-# dE0_theta: derivative of E_theta
+# dE0_theta: derivative of E0_theta
 # N_steps: number of channels to estimate
 # d: system dimension 
 # d_a: ancilla dimension
