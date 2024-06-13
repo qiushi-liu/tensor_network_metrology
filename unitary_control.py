@@ -7,7 +7,7 @@ import pennylane as qml
 # rho: initial input state
 # control_parameters: variational parameters for initial N_steps-1 control operations, shape: (N_steps-1, num_layers, n_qubits, 3)
 # E0_theta: Choi operator of the channel to estimate
-# dE0_theta: derivative of E_theta
+# dE0_theta: derivative of E0_theta
 # N_steps: number of queries to the channel to estimate
 # d: system dimension 
 # d_a: ancilla dimension
