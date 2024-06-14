@@ -151,5 +151,3 @@ eps_SLD = 1e-10
 eps_QFI = 1e-12
 decay_parameter0 = 0.1
 print('QFI (bit flip noise, arbitrary control, 1 ancilla): ', solve_QFIs(control_type, N_steps_min, N_steps_max, rho, control, E_theta_BF, dE_theta_BF, d, d_a, n_qubits, num_layers, iterations, eps_SLD, eps_QFI, decay_parameter0))
-
-dE_theta_AD = dE_theta(K_thetas_AD, dK_thetas_AD)
