@@ -72,7 +72,7 @@ def dK_thetas_AD(theta, t, p):
                    [0, (1j * t / 2) * np.exp(1j * (theta * t) / 2)]])
     return [np.array([[1, 0], [0, np.sqrt(1 - p)]]) @ dU, np.array([[0, np.sqrt(p)], [0, 0]]) @ dU]
 ```
-and compute the Choi operators with the derivative
+and compute the Choi operators with the derivative, similar to
 ```python
 # amplitude damping noise
 K_thetas_AD = K_thetas_AD_noise_signal(theta, t, p)
