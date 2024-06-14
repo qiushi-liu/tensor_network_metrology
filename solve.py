@@ -110,7 +110,7 @@ if control_type == 'iuc':
     control = control_parameters_0
 eps_SLD = 1e-10
 eps_QFI = 1e-12
-decay_parameter0 = 0.01
+decay_parameter0 = 0.1
 print('QFI (amplitude damping noise, identical control, 0 ancilla): ', solve_QFIs(control_type, N_steps_min, N_steps_max, rho, control, E_theta_AD, dE_theta_AD, d, d_a, n_qubits, num_layers, iterations, eps_SLD, eps_QFI, decay_parameter0))
 
 
@@ -149,5 +149,5 @@ if control_type == 'iuc':
     control = control_parameters_0
 eps_SLD = 1e-10
 eps_QFI = 1e-12
-decay_parameter0 = 0.1
+decay_parameter0 = 0.01
 print('QFI (bit flip noise, arbitrary control, 1 ancilla): ', solve_QFIs(control_type, N_steps_min, N_steps_max, rho, control, E_theta_BF, dE_theta_BF, d, d_a, n_qubits, num_layers, iterations, eps_SLD, eps_QFI, decay_parameter0))
