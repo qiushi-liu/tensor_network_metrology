@@ -49,6 +49,10 @@ control_parameters_0 = qml.numpy.random.uniform(
                     0, 2*np.pi, (num_layers, n_qubits, 3), requires_grad=True
         ) # identical unitary control
 ```
+By assigning values to all the necessary parameters, call the following function to solve the QFI for the number of queries from `N_steps_min` to `N_steps_max`:
+```python
+solve_QFIs(control_type, N_steps_min, N_steps_max, rho, control, E_theta_AD, dE_theta_AD, d, d_a, n_qubits, num_layers, iterations, eps_SLD, eps_QFI, decay_parameter0)
+```
 The other noise models can also be used for QFI evaluation, by defining the Kraus operators with the derivative in `functions.py`, similar to
 ```python
 # K_thetas_AD is a list of Kraus operators for a unitary evolution U(theta,t) followed by amplitude damping noise
@@ -67,4 +71,12 @@ def dK_thetas_AD(theta, t, p):
     dU = np.array([[(-1j * t / 2) * np.exp(-1j * (theta * t) / 2), 0],
                    [0, (1j * t / 2) * np.exp(1j * (theta * t) / 2)]])
     return [np.array([[1, 0], [0, np.sqrt(1 - p)]]) @ dU, np.array([[0, np.sqrt(p)], [0, 0]]) @ dU]
+```
+and compute the Choi operators with the derivative
+```python
+# amplitude damping noise
+K_thetas_AD = K_thetas_AD_noise_signal(theta, t, p)
+dK_thetas_AD = dK_thetas_AD_noise_signal(theta, t, p)
+E_theta_AD = E_theta(K_thetas_AD)
+dE_theta_AD = dE_theta(K_thetas_AD, dK_thetas_AD)
 ```
